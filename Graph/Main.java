@@ -34,7 +34,6 @@ class Main extends JFrame{
 
     public JPanel mainSetup(){
         JPanel mainPanel = new JPanel();
-        JPanel j = new JPanel();
         JPanel buttonPanel = new JPanel();
         panel = new GraphViewer();
         panel.setPreferredSize(new Dimension(600, 500));
