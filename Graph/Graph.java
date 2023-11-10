@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Random;
+import java.util.ArrayList;
 
 abstract class Graph {
     protected ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
