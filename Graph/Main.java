@@ -49,10 +49,11 @@ class Main extends JFrame{
     public JPanel setup(){
         JPanel j = new JPanel();
         Vector<Integer> a = new Vector<>();
-        for (int i = 3; i < 11; i++){
+        for (int i = 3; i < 9; i++){
             a.add(i);
         }
         sizeComboBox = new JComboBox<Integer>(new DefaultComboBoxModel<Integer>(a));
+        sizeComboBox.setSelectedIndex(3);
         graphComboBox = new JComboBox<GraphType>(new DefaultComboBoxModel<GraphType>(GraphType.values()));
 
         j.setLayout(new BoxLayout(j, BoxLayout.X_AXIS));

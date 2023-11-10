@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GraphViewer extends JPanel{
-    private int size = 8;
+    private int size = 6;
     private GraphType gt = GraphType.Simple;
     private GraphGenerator gg;
     private Graph graph;
