@@ -16,7 +16,11 @@ public class SimpleGraph extends Graph{
     public void generate(){
         for (int i = 0; i < order; i++){
             for (int j = i+1; j < order; j++){
-                int in = rand.nextInt(2);
+                int in;
+                if (order < 6) {in = rand.nextInt(2);}
+                else{
+                    in = rand.nextInt(3);
+                }
                 if (in == 1){
                     adjList.get(i).add(j);
                     adjList.get(j).add(i);

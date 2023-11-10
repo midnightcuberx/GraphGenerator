@@ -1,8 +1,9 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GraphViewer extends JPanel{
-    private int size = 6;
+    private int size = 8;
     private GraphType gt = GraphType.Simple;
     private GraphGenerator gg;
     private Graph graph;
@@ -32,7 +33,8 @@ public class GraphViewer extends JPanel{
             int y = getY(i);
             //System.out.println(Math.round(x));
             //System.out.println(y);
-            g.drawOval(x, y, nodeHeight, nodeHeight);
+            g.setColor(Color.BLACK);
+            g.fillOval(x, y, nodeHeight, nodeHeight);
             g.drawString(String.valueOf(i), x, y);
             for (int j: graph.getAdjacentNodes(i)){
                 drawLines(g, i, j);

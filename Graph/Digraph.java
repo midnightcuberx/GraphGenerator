@@ -20,7 +20,9 @@ public class Digraph extends Graph{
                 if (i == j){
                     continue;
                 }
-                int in = rand.nextInt(4);
+                int in;
+                if (order < 6){in = rand.nextInt(4);}
+                else{in = rand.nextInt(6);}
                 if (in == 1){
                     adjList.get(i).add(j);
                     size++;
