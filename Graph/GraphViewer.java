@@ -27,13 +27,21 @@ public class GraphViewer extends JPanel{
         //g.drawOval(300, 250, 10, 10);
 
         for (int i = 0; i < size; i++){
-            int x = (int) Math.round(centerX + dist * Math.cos(2 * Math.PI * i / size));
-            int y = (int) Math.round(centerY + dist * Math.sin(2 * Math.PI * i / size));
+            int x = getX(i);
+            int y = getY(i);
             //System.out.println(Math.round(x));
             //System.out.println(y);
             g.drawOval(x, y, nodeHeight, nodeHeight);
             g.drawString(String.valueOf(i), x, y);
         }
+    }
+
+    public int getX(int i){
+        return (int) Math.round(centerX + dist * Math.cos(2 * Math.PI * i / size));
+    }
+
+    public int getY(int i){
+        return (int) Math.round(centerY + dist * Math.sin(2 * Math.PI * i / size));
     }
 
     public void setGraph(GraphType g, int n){
