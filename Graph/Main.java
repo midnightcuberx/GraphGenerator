@@ -5,7 +5,7 @@ class Main{
         //ArrayList<ArrayList<ArrayList<Integer>>> a = new ArrayList<>();
         //for (int i = 0; i)
         GraphGenerator gg = new GraphGenerator();
-        gg.createGraph(GraphType.Simple, 6);
+        gg.createGraph(GraphType.Directed, 6);
         System.out.println(gg.getGraphs().get(0).getAdjList());
     }
 
