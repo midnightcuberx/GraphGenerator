@@ -1,0 +1,3 @@
+enum GraphType{
+    Simple, Directed;
+}

@@ -1,0 +1,3 @@
+enum GraphGenerationMethod {
+    FAST, SLOW
+}
