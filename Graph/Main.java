@@ -118,11 +118,7 @@ class Main extends JFrame{
 
     public JPanel setup(){
         JPanel j = new JPanel();
-        Vector<Integer> a = new Vector<>();
-        for (int i = 3; i < 9; i++){
-            a.add(i);
-        }
-        sizeComboBox = new JComboBox<Integer>(new DefaultComboBoxModel<Integer>(a));
+        sizeComboBox = new JComboBox<Integer>(new DefaultComboBoxModel<Integer>(new Integer []{3,4,5,6,7,8}));
         sizeComboBox.setSelectedIndex(3);
         graphComboBox = new JComboBox<GraphType>(new DefaultComboBoxModel<GraphType>(GraphType.values()));
 
@@ -140,6 +136,7 @@ class Main extends JFrame{
         public void actionPerformed(ActionEvent e){
             panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
             clearTable(dfsModel);
+            clearTable(bfsModel);
             dfsTable.setVisible(false);
             bfsTable.setVisible(false);
             dfsSetup();
