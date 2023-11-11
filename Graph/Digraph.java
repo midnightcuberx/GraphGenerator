@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 public class Digraph extends Graph{
 
+    private ArrayList<ArrayList<Integer>> underlying = new ArrayList<>();
+
     public Digraph(){
         this(6);
     }
@@ -11,6 +13,7 @@ public class Digraph extends Graph{
         order = n;
         for (int i = 0; i < order; i++){
             adjList.add(new ArrayList<Integer>());
+            underlying.add(new ArrayList<Integer>());
         }
         generateRandom();
     }
@@ -26,6 +29,8 @@ public class Digraph extends Graph{
                 else{in = rand.nextInt(6);}
                 if (in == 1){
                     adjList.get(i).add(j);
+                    underlying.get(i).add(j);
+                    underlying.get(j).add(i);
                     size++;
                 }
             }
@@ -45,6 +50,8 @@ public class Digraph extends Graph{
                 int in = Integer.parseInt(binaryString.substring(count, count + 1));
                 if (in == 1){
                     adjList.get(i).add(j);
+                    underlying.get(i).add(j);
+                    underlying.get(j).add(i);
                     size++;
                 }
                 count++;

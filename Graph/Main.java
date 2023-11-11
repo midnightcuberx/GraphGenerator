@@ -4,13 +4,18 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
 
 class Main extends JFrame{
     private GraphViewer panel;
     JComboBox<Integer> sizeComboBox;
     JComboBox<GraphType> graphComboBox;
     JButton graphButton;
+    JButton dfsButton;
+    JButton bfsButton;
+    JButton infoButton;
+    JTable infoTable;
+    DefaultTableModel infoModel;
     DefaultTableModel bfsModel;
     DefaultTableModel dfsModel;
     JTable bfsTable;
@@ -62,15 +67,46 @@ class Main extends JFrame{
         Object [] o = {"Node num", "Seen", "Done"};
         dfsModel = new DefaultTableModel(new Object[][] {}, o);
         bfsModel = new DefaultTableModel(new Object[][] {}, new Object[] {"Node", "Level"});
+        infoModel = new DefaultTableModel(new Object [][] {}, new Object[]{"Key", "Value"});
+        infoTable = new JTable(infoModel);
         dfsTable = new JTable(dfsModel);
         bfsTable = new JTable(bfsModel);
         JScrollPane dfs = new JScrollPane(dfsTable);
         JScrollPane bfs = new JScrollPane(bfsTable);
+        JScrollPane info = new JScrollPane(infoTable);
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+
+        JPanel graphInfo = new JPanel();
+        infoButton = new JButton("Show info");
+        infoButton.addActionListener(new InfoListener());
+        graphInfo.setLayout(new BoxLayout(graphInfo, BoxLayout.X_AXIS));
+        graphInfo.add(new JLabel("Graph info"));
+        graphInfo.add(new JSeparator());
+        graphInfo.add(infoButton);
+
+        JPanel dfsInfo = new JPanel();
+        dfsButton = new JButton("Show info");
+        dfsButton.addActionListener(new DFSListener());
+        dfsInfo.setLayout(new BoxLayout(dfsInfo, BoxLayout.X_AXIS));
+        dfsInfo.add(new JLabel("DFS info"));
+        dfsInfo.add(new JSeparator());
+        dfsInfo.add(dfsButton);
+
+        JPanel bfsInfo = new JPanel();
+        bfsButton = new JButton("Show info");
+        bfsButton.addActionListener(new BFSListener());
+        bfsInfo.setLayout(new BoxLayout(bfsInfo, BoxLayout.X_AXIS));
+        bfsInfo.add(new JLabel("BFS info"));
+        bfsInfo.add(new JSeparator());
+        bfsInfo.add(bfsButton);
+
+
         //infoPanel.add(new JLabel("Graph info"));
-        infoPanel.add(new JLabel("DFS info"));
+        infoPanel.add(graphInfo);
+        infoPanel.add(info);
+        infoPanel.add(dfsInfo);
         infoPanel.add(dfs);
-        infoPanel.add(new JLabel("BFS info"));
+        infoPanel.add(bfsInfo);
         infoPanel.add(bfs);
         return infoPanel;
     }
@@ -99,6 +135,7 @@ class Main extends JFrame{
         public void actionPerformed(ActionEvent e){
             panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
             clearTable(dfsModel);
+            dfsTable.setVisible(false);
             dfsSetup();
         }
 
@@ -121,6 +158,24 @@ class Main extends JFrame{
             for (int i = 0; i < size; i++){
                 t.removeRow(0);
             }
+        }
+    }
+
+    class InfoListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            infoTable.setVisible(true);
+        }
+    }
+
+    class DFSListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            dfsTable.setVisible(true);
+        }
+    }
+
+    class BFSListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            bfsTable.setVisible(true);
         }
     }
 }
