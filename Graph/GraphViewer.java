@@ -12,7 +12,7 @@ public class GraphViewer extends JPanel{
 
     public GraphViewer(){
         gg = new GraphGenerator();
-        setupViewer(gt, order);
+        //setupViewer(gt, order);
     }
 
     protected void paintComponent(Graphics g){
@@ -20,6 +20,7 @@ public class GraphViewer extends JPanel{
         //super.paintComponent(g);
         //g.setColor(Color.WHITE);
         //g.drawOval(10, 10, 20, 20);
+        if (graph == null){return;}
         graph.paintNodes(g);
     }
 

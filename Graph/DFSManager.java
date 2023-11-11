@@ -53,4 +53,5 @@ public class DFSManager {
     public int [] getDone(){return done;}
     public int getNumComponents(){return numComponents;}
     public int [] getDfsOrder(){return dfsOrder;}
+    public Graph getGraph(){return graph;}
 }
