@@ -35,9 +35,9 @@ public class GraphViewer extends JPanel{
 
     public void setupViewer(GraphType gt, int order){
         graph = gg.createGraph(gt, order);
-        dfsManager = new DFSManager(graph);
+        dfsManager = graph.getDfsManager();
         dfsManager.dfs();
-        bfsManager = new BFSManager(graph);
+        bfsManager = graph.getBfsManager();
         bfsManager.bfs();
         System.out.println(graph);
         /*System.out.println("There are " + dfsManager.getNumComponents() + " components");

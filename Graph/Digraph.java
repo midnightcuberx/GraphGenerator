@@ -16,6 +16,8 @@ public class Digraph extends Graph{
             underlying.add(new ArrayList<Integer>());
         }
         generateRandom();
+        bfsManager = new BFSManager(this);
+        dfsManager = new DFSManager(this);
     }
     
     protected void generate(){

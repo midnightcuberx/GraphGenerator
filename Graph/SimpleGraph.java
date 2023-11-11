@@ -14,6 +14,8 @@ public class SimpleGraph extends Graph{
         }
         //generate();
         generateRandom();
+        bfsManager = new BFSManager(this);
+        dfsManager = new DFSManager(this);
     }
 
     protected void generate(){
