@@ -12,9 +12,9 @@ class Main extends JFrame{
     public static void main(String[] args){
         //ArrayList<ArrayList<ArrayList<Integer>>> a = new ArrayList<>();
         //for (int i = 0; i)
-        GraphGenerator gg = new GraphGenerator();
-        gg.createGraph(GraphType.Directed, 6);
-        System.out.println(gg.getGraphs().get(0).getAdjList());
+        //GraphGenerator gg = new GraphGenerator();
+        //gg.createGraph(GraphType.Directed, 6);
+        //System.out.println(gg.getGraphs().get(0).toString());
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new Main();
@@ -40,6 +40,7 @@ class Main extends JFrame{
         //j.add(panel);
         //j.add(new JButton("Yes"));
         graphButton = new JButton("Generate Graph");
+        graphButton.addActionListener(new GenerateListener());
         buttonPanel.add(graphButton);
 		JSplitPane mainSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, buttonPanel, panel);
         mainPanel.add(mainSplitPane);
@@ -59,16 +60,16 @@ class Main extends JFrame{
         j.setLayout(new BoxLayout(j, BoxLayout.X_AXIS));
         j.add(new JLabel("Graph type:", JLabel.LEFT));
         j.add(graphComboBox);
-        j.add(new JLabel("Size of graph:", JLabel.RIGHT));
+        j.add(new JLabel("Order of graph:", JLabel.RIGHT));
         j.add(sizeComboBox);
         //j.setPreferredSize(new Dimension(j.getWidth(), 50));
 
         return j;
     }
 
-    class SizeListener implements ActionListener{
+    class GenerateListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            //do stuff to show graph
+            panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
         }
     }
 }

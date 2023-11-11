@@ -1,3 +1,3 @@
 enum GraphGenerationMethod {
-    FAST, SLOW
+    Chance, State
 }
