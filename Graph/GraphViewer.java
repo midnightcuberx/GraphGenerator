@@ -9,6 +9,7 @@ public class GraphViewer extends JPanel{
     private GraphGenerator gg;
     private Graph graph;
     private DFSManager dfsManager;
+    private BFSManager bfsManager;
 
     public GraphViewer(){
         gg = new GraphGenerator();
@@ -36,14 +37,17 @@ public class GraphViewer extends JPanel{
         graph = gg.createGraph(gt, order);
         dfsManager = new DFSManager(graph);
         dfsManager.dfs();
+        bfsManager = new BFSManager(graph);
+        bfsManager.bfs();
         System.out.println(graph);
-        System.out.println("There are " + dfsManager.getNumComponents() + " components");
+        /*System.out.println("There are " + dfsManager.getNumComponents() + " components");
         System.out.println("DFS order: " + Arrays.toString(dfsManager.getDfsOrder()));
         System.out.println("Seen time: " +Arrays.toString(dfsManager.getSeen()));
-        System.out.println("Done: " + Arrays.toString(dfsManager.getDone()));
+        System.out.println("Done: " + Arrays.toString(dfsManager.getDone()));*/
     }
 
     public DFSManager getDfsManager(){return dfsManager;}
+    public BFSManager getBfsManager(){return bfsManager;}
 
 
 

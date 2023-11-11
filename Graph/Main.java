@@ -27,6 +27,11 @@ class Main extends JFrame{
         //GraphGenerator gg = new GraphGenerator();
         //gg.createGraph(GraphType.Directed, 6);
         //System.out.println(gg.getGraphs().get(0).toString());
+        /*Graph g = new SimpleGraph();
+        BFSManager m = new BFSManager(g);
+        m.bfs();
+        System.out.println(Arrays.toString(m.getBfsOrder()));
+        System.out.println(g.getAdjList());*/
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new Main();
@@ -136,7 +141,9 @@ class Main extends JFrame{
             panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
             clearTable(dfsModel);
             dfsTable.setVisible(false);
+            bfsTable.setVisible(false);
             dfsSetup();
+            bfsSetup();
         }
 
         public void dfsSetup(){
@@ -151,6 +158,18 @@ class Main extends JFrame{
                 dfsModel.addRow(r);
                 //dfsModel.fireTableDataChanged();
             }        
+        }
+
+        public void bfsSetup(){
+            BFSManager manager = panel.getBfsManager();
+            Graph g = manager.getGraph();
+            int order = g.getOrder();
+            int [] bfsOrder = manager.getBfsOrder();
+            int [] levels = manager.getLevels();
+
+            for (int i = 0; i < order; i++){
+                bfsModel.addRow(new Object [] {i, levels[i]});
+            }
         }
 
         public void clearTable(DefaultTableModel t){

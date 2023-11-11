@@ -13,6 +13,7 @@ abstract class Graph {
     protected final int centerY = 250 - nodeHeight / 2;
     protected final int dist = 150;
     protected DFSManager dfsManager;
+    protected BFSManager bfsManager;
 
 
     protected abstract void generate();
@@ -22,6 +23,8 @@ abstract class Graph {
     public int getSize(){return size;}
     public DFSManager getDfsManager(){return dfsManager;}
     public void setDfsManager(DFSManager m){dfsManager = m;}
+    public BFSManager getBfsManager(){return bfsManager;}
+    public void setBfsManager(BFSManager m){bfsManager = m;}
     public ArrayList<Integer> getAdjacentNodes(int n){
         return adjList.get(n);
     }
