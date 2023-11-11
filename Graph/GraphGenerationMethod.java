@@ -1,3 +1,0 @@
-enum GraphGenerationMethod {
-    Chance, State
-}

@@ -1,19 +1,18 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+import java.util.*;
 
 public class GraphViewer extends JPanel{
     private int order = 6;
     private GraphType gt = GraphType.Simple;
     private GraphGenerator gg;
     private Graph graph;
+    private DFSManager dfsManager;
 
     public GraphViewer(){
         gg = new GraphGenerator();
-        graph = gg.createGraph(gt, order);
-        System.out.println(graph);
-        //repaint();
-        //paintComponent(getGraphics());
+        setupViewer(gt, order);
     }
 
     protected void paintComponent(Graphics g){
@@ -27,10 +26,23 @@ public class GraphViewer extends JPanel{
     public void setGraph(GraphType g, int n){
         order = n;
         gt = g;
-        graph = gg.createGraph(g, n);
-        removeAll();
+        setupViewer(g, n);
+        //removeAll();
         paintComponent(getGraphics());
     }
+
+    public void setupViewer(GraphType gt, int order){
+        graph = gg.createGraph(gt, order);
+        dfsManager = new DFSManager(graph);
+        dfsManager.dfs();
+        System.out.println(graph);
+        System.out.println("There are " + dfsManager.getNumComponents() + " components");
+        System.out.println("DFS order: " + Arrays.toString(dfsManager.getDfsOrder()));
+        System.out.println("Seen time: " +Arrays.toString(dfsManager.getSeen()));
+        System.out.println("Done: " + Arrays.toString(dfsManager.getDone()));
+    }
+
+    public DFSManager getDfsManager(){return dfsManager;}
 
 
 
