@@ -20,6 +20,9 @@ class Main extends JFrame{
     DefaultTableModel dfsModel;
     JTable bfsTable;
     JTable dfsTable;
+    boolean infoVisible;
+    boolean dfsVisible;
+    boolean bfsVisible;
 
     public static void main(String[] args){
         //ArrayList<ArrayList<ArrayList<Integer>>> a = new ArrayList<>();
@@ -83,7 +86,7 @@ class Main extends JFrame{
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
         JPanel graphInfo = new JPanel();
-        infoButton = new JButton("Show info");
+        infoButton = new JButton("Show/Hide info");
         infoButton.addActionListener(new InfoListener());
         graphInfo.setLayout(new BoxLayout(graphInfo, BoxLayout.X_AXIS));
         graphInfo.add(new JLabel("Graph info"));
@@ -91,7 +94,7 @@ class Main extends JFrame{
         graphInfo.add(infoButton);
 
         JPanel dfsInfo = new JPanel();
-        dfsButton = new JButton("Show info");
+        dfsButton = new JButton("Show/Hide info");
         dfsButton.addActionListener(new DFSListener());
         dfsInfo.setLayout(new BoxLayout(dfsInfo, BoxLayout.X_AXIS));
         dfsInfo.add(new JLabel("DFS info"));
@@ -99,7 +102,7 @@ class Main extends JFrame{
         dfsInfo.add(dfsButton);
 
         JPanel bfsInfo = new JPanel();
-        bfsButton = new JButton("Show info");
+        bfsButton = new JButton("Show/Hide info");
         bfsButton.addActionListener(new BFSListener());
         bfsInfo.setLayout(new BoxLayout(bfsInfo, BoxLayout.X_AXIS));
         bfsInfo.add(new JLabel("BFS info"));
@@ -138,8 +141,12 @@ class Main extends JFrame{
             panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
             clearTable(dfsModel);
             clearTable(bfsModel);
+            infoTable.setVisible(false);
             dfsTable.setVisible(false);
             bfsTable.setVisible(false);
+            infoVisible = false;
+            dfsVisible = false;
+            bfsVisible = false;
             infoSetup();
             dfsSetup();
             bfsSetup();
@@ -188,19 +195,26 @@ class Main extends JFrame{
 
     class InfoListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            infoTable.setVisible(true);
+            boolean bool = infoVisible == true ? false:true;
+            infoVisible = bool;
+            infoTable.setVisible(bool);
         }
     }
 
     class DFSListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            dfsTable.setVisible(true);
+            boolean bool = dfsVisible == true ? false:true;
+            dfsVisible = bool;
+            dfsTable.setVisible(bool);
+            //System.out.println(bool);
         }
     }
 
     class BFSListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            bfsTable.setVisible(true);
+            boolean bool = bfsVisible == true ? false:true;
+            bfsVisible = bool;
+            bfsTable.setVisible(bool);
         }
     }
 }
