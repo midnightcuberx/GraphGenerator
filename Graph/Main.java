@@ -32,6 +32,7 @@ class Main extends JFrame{
         m.bfs();
         System.out.println(Arrays.toString(m.getBfsOrder()));
         System.out.println(g.getAdjList());*/
+        //System.out.println(Double.POSITIVE_INFINITY > Double.POSITIVE_INFINITY - 1);
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new Main();
@@ -139,17 +140,26 @@ class Main extends JFrame{
             clearTable(bfsModel);
             dfsTable.setVisible(false);
             bfsTable.setVisible(false);
+            infoSetup();
             dfsSetup();
             bfsSetup();
         }
 
-        public void dfsSetup(){
-            DFSManager manager = panel.getDfsManager();
-            Graph g = manager.getGraph();
+        public void infoSetup(){
+            Graph g = panel.getGraph();
             int order = g.getOrder();
-            int [] seen = manager.getSeen();
-            int [] done = manager.getDone();
-            int [] dfsOrder = manager.getDfsOrder();
+            int size = g.getSize();
+            int girth = 3;
+            double diameter = Double.POSITIVE_INFINITY;
+            double radius = Double.POSITIVE_INFINITY;
+        }
+
+        public void dfsSetup(){
+            Graph g = panel.getGraph();
+            int order = g.getOrder();
+            int [] seen = g.getSeen();
+            int [] done = g.getDone();
+            int [] dfsOrder = g.getDfsOrder();
             for (int i = 0; i < order; i++){
                 Object [] r = {i, seen[i], done[i]};
                 dfsModel.addRow(r);
@@ -158,11 +168,10 @@ class Main extends JFrame{
         }
 
         public void bfsSetup(){
-            BFSManager manager = panel.getBfsManager();
-            Graph g = manager.getGraph();
+            Graph g = panel.getGraph();
             int order = g.getOrder();
-            int [] bfsOrder = manager.getBfsOrder();
-            int [] levels = manager.getLevels();
+            int [] bfsOrder = g.getBfsOrder();
+            int [] levels = g.getLevels();
 
             for (int i = 0; i < order; i++){
                 bfsModel.addRow(new Object [] {i, levels[i]});

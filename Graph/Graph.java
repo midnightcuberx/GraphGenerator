@@ -19,6 +19,7 @@ abstract class Graph {
     protected abstract void generate();
     protected abstract void generateRandom();
     public abstract void drawLines(Graphics g, int i, int j);
+    
     public int getOrder(){return order;}
     public int getSize(){return size;}
     public DFSManager getDfsManager(){return dfsManager;}
@@ -54,13 +55,15 @@ abstract class Graph {
         }
     }
 
-    public int getX(int i){
-        return (int) Math.round(centerX + dist * Math.cos(2 * Math.PI * i / order));
-    }
-
-    public int getY(int i){
-        return (int) Math.round(centerY + dist * Math.sin(2 * Math.PI * i / order));
-    }
-
+    public int getX(int i){return (int) Math.round(centerX + dist * Math.cos(2 * Math.PI * i / order));}
+    public int getY(int i){return (int) Math.round(centerY + dist * Math.sin(2 * Math.PI * i / order));}
+    public void dfs(){dfsManager.dfs();}
+    public void bfs(){bfsManager.bfs();}
+    public int [] getSeen(){return dfsManager.getSeen();}
+    public int [] getDone(){return dfsManager.getDone();}
+    public int [] getDfsOrder(){return dfsManager.getDfsOrder();}
+    public int [] getBfsOrder(){return bfsManager.getBfsOrder();}
+    public int getNumComponents(){return bfsManager.getNumComponents();}
+    public int [] getLevels(){return bfsManager.getLevels();}
 
 }

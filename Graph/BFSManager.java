@@ -30,6 +30,7 @@ public class BFSManager {
         for (int i = 0; i < order; i++){
             if (level[i] != -1){continue;}
             bfsVisit(i);
+            numComponents++;
         }
     }
 

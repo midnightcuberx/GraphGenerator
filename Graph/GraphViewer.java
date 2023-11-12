@@ -8,8 +8,8 @@ public class GraphViewer extends JPanel{
     private GraphType gt = GraphType.Simple;
     private GraphGenerator gg;
     private Graph graph;
-    private DFSManager dfsManager;
-    private BFSManager bfsManager;
+    //private DFSManager dfsManager;
+    //private BFSManager bfsManager;
 
     public GraphViewer(){
         gg = new GraphGenerator();
@@ -35,10 +35,8 @@ public class GraphViewer extends JPanel{
 
     public void setupViewer(GraphType gt, int order){
         graph = gg.createGraph(gt, order);
-        dfsManager = graph.getDfsManager();
-        dfsManager.dfs();
-        bfsManager = graph.getBfsManager();
-        bfsManager.bfs();
+        graph.dfs();
+        graph.bfs();
         System.out.println(graph);
         /*System.out.println("There are " + dfsManager.getNumComponents() + " components");
         System.out.println("DFS order: " + Arrays.toString(dfsManager.getDfsOrder()));
@@ -46,8 +44,9 @@ public class GraphViewer extends JPanel{
         System.out.println("Done: " + Arrays.toString(dfsManager.getDone()));*/
     }
 
-    public DFSManager getDfsManager(){return dfsManager;}
-    public BFSManager getBfsManager(){return bfsManager;}
+    //public DFSManager getDfsManager(){return dfsManager;}
+    //public BFSManager getBfsManager(){return bfsManager;}
+    public Graph getGraph(){return graph;}
 
 
 
