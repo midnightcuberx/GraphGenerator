@@ -18,11 +18,23 @@ public class GraphViewer extends JPanel{
 
     protected void paintComponent(Graphics g){
         super.paintComponent(g); //clears the panel
+        //Graphics g =
+        //g.dispose();
         //super.paintComponent(g);
         //g.setColor(Color.WHITE);
         //g.drawOval(10, 10, 20, 20);
         if (graph == null){return;}
         graph.paintNodes(g);
+    }
+
+    public void paintBFS(Graphics g){
+        super.paintComponent(g);
+        graph.drawBFS(g);
+    }
+
+    public void paintDFS(Graphics g){
+        super.paintComponent(g);
+        graph.drawDFS(g);
     }
 
     public void setGraph(GraphType g, int n){

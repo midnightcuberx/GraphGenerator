@@ -207,6 +207,11 @@ class Main extends JFrame{
             dfsVisible = bool;
             dfsTable.setVisible(bool);
             //System.out.println(bool);
+            if (dfsVisible == true){
+                panel.paintDFS(panel.getGraphics());
+            } else{
+                panel.paintComponent(panel.getGraphics());
+            }
         }
     }
 
@@ -215,6 +220,11 @@ class Main extends JFrame{
             boolean bool = bfsVisible == true ? false:true;
             bfsVisible = bool;
             bfsTable.setVisible(bool);
+            if (bfsVisible == true){
+                panel.paintBFS(panel.getGraphics());
+            } else{
+                panel.paintComponent(panel.getGraphics());
+            }
         }
     }
 }

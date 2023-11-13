@@ -55,6 +55,27 @@ abstract class Graph {
         }
     }
 
+    public void drawDFS(Graphics g){
+        paintNodes(g);
+        ArrayList<Integer []> treeEdges = getDFSEdges();
+        g.setColor(Color.RED);
+        for (Integer [] edge: treeEdges){
+            drawLines(g, edge[0], edge[1]);
+        }
+    }
+
+    public void drawBFS(Graphics g){
+        paintNodes(g);
+        ArrayList<Integer []> treeEdges = getBFSEdges();
+        g.setColor(Color.RED);
+        for (Integer [] edge: treeEdges){
+            drawLines(g, edge[0], edge[1]);
+        }
+    }
+
+    public ArrayList<Integer []> getDFSEdges(){return dfsManager.getDFSEdges();}
+    public ArrayList<Integer []> getBFSEdges(){return bfsManager.getBFSEdges();}
+
     public int getX(int i){return (int) Math.round(centerX + dist * Math.cos(2 * Math.PI * i / order));}
     public int getY(int i){return (int) Math.round(centerY + dist * Math.sin(2 * Math.PI * i / order));}
     public void dfs(){dfsManager.dfs();}

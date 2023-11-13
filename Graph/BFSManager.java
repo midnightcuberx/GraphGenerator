@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,6 +11,7 @@ public class BFSManager {
     private int [] bfsOrder;
     private int count;
     private int numComponents;
+    private ArrayList<Integer []> treeEdges;
 
     public BFSManager(Graph g){
         graph = g;
@@ -24,6 +26,7 @@ public class BFSManager {
         bfsOrder = new int [order];
         count = 0;
         numComponents = 0;
+        treeEdges = new ArrayList<>();
     }
 
     public void bfs(){
@@ -44,12 +47,14 @@ public class BFSManager {
             bfsOrder[count++] = node;
             for (int neighbour: graph.getAdjacentNodes(node)){
                 if (level[neighbour] != -1){continue;}
+                treeEdges.add(new Integer[] {node, neighbour});
                 level[neighbour] = level[node] + 1;
                 q.add(neighbour);
             }
         }
     }
 
+    public ArrayList<Integer []> getBFSEdges(){return treeEdges;}
     public int [] getLevels(){return level;}
     public int getNumComponents(){return numComponents;}
     public int [] getBfsOrder(){return bfsOrder;}
