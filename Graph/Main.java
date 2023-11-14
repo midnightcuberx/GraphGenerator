@@ -139,6 +139,7 @@ class Main extends JFrame{
     class GenerateListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
+            clearTable(infoModel);
             clearTable(dfsModel);
             clearTable(bfsModel);
             infoTable.setVisible(false);
@@ -156,9 +157,18 @@ class Main extends JFrame{
             Graph g = panel.getGraph();
             int order = g.getOrder();
             int size = g.getSize();
-            int girth = 3;
-            double diameter = Double.POSITIVE_INFINITY;
-            double radius = Double.POSITIVE_INFINITY;
+            int girth;
+            double diameter;
+            double radius;
+            int [] dfsOrder = g.getDfsOrder();
+            int [] bfsOrder = g.getBfsOrder();
+            infoModel.addRow(new Object [] {"Order", order});
+            infoModel.addRow(new Object[] {"Size", size});
+            infoModel.addRow(new Object[]{"Girth", "Do later"});
+            infoModel.addRow(new Object[]{"Diameter", "Do later"});
+            infoModel.addRow(new Object[]{"Radius", "Do later"});
+            infoModel.addRow(new Object [] {"DFS Order", Arrays.toString(dfsOrder)});
+            infoModel.addRow(new Object [] {"BFS Order", Arrays.toString(bfsOrder)});
         }
 
         public void dfsSetup(){
