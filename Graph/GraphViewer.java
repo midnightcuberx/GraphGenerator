@@ -49,7 +49,11 @@ public class GraphViewer extends JPanel{
         graph = gg.createGraph(gt, order);
         graph.dfs();
         graph.bfs();
-        System.out.println(graph);
+        graph.setupDistanceMatrix();
+        //System.out.println(graph);
+        System.out.println(Main.ArrayToString2D(graph.getDistanceMatrix()));
+        System.out.println(graph.getDiameter());
+        System.out.println(graph.getRadius());
         /*System.out.println("There are " + dfsManager.getNumComponents() + " components");
         System.out.println("DFS order: " + Arrays.toString(dfsManager.getDfsOrder()));
         System.out.println("Seen time: " +Arrays.toString(dfsManager.getSeen()));

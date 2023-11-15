@@ -18,6 +18,7 @@ public class Digraph extends Graph{
         generateRandom();
         bfsManager = new BFSManager(this);
         dfsManager = new DFSManager(this);
+        eccentricityManager = new EccentricityManager(this);
     }
     
     protected void generate(){

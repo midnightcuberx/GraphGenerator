@@ -14,6 +14,7 @@ abstract class Graph {
     protected final int dist = 150;
     protected DFSManager dfsManager;
     protected BFSManager bfsManager;
+    protected EccentricityManager eccentricityManager;
 
 
     protected abstract void generate();
@@ -22,6 +23,7 @@ abstract class Graph {
     
     public int getOrder(){return order;}
     public int getSize(){return size;}
+    public EccentricityManager getEccentricityManager(){return eccentricityManager;}
     public DFSManager getDfsManager(){return dfsManager;}
     public void setDfsManager(DFSManager m){dfsManager = m;}
     public BFSManager getBfsManager(){return bfsManager;}
@@ -86,5 +88,11 @@ abstract class Graph {
     public int [] getBfsOrder(){return bfsManager.getBfsOrder();}
     public int getNumComponents(){return bfsManager.getNumComponents();}
     public int [] getLevels(){return bfsManager.getLevels();}
+
+    public int getDiameter(){return eccentricityManager.getDiameter();}
+    public int getRadius(){return eccentricityManager.getRadius();}
+    public int [] [] getDistanceMatrix(){return eccentricityManager.getDistanceMatrix();}
+    public int [] getEccentricityArray(){return eccentricityManager.getEccentricityArray();}
+    public void setupDistanceMatrix(){eccentricityManager.allNodesDistance();}
 
 }

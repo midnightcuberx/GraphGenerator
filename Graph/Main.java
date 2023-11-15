@@ -136,6 +136,15 @@ class Main extends JFrame{
         return j;
     }
 
+    public static String ArrayToString2D(int [] [] arr){
+        StringBuffer s = new StringBuffer();
+        s.append(Arrays.toString(arr[0]));
+        for (int i = 1; i < arr.length; i++){
+            s.append(", " + Arrays.toString(arr[i]));
+        }
+        return s.toString();
+    }
+
     class GenerateListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             panel.setGraph((GraphType) graphComboBox.getSelectedItem(), (int) sizeComboBox.getSelectedItem());
@@ -158,15 +167,25 @@ class Main extends JFrame{
             int order = g.getOrder();
             int size = g.getSize();
             int girth;
-            double diameter;
-            double radius;
+            Object diameter = g.getDiameter();
+            Object radius = g.getRadius();
             int [] dfsOrder = g.getDfsOrder();
             int [] bfsOrder = g.getBfsOrder();
+            int numComponents = g.getNumComponents();
+
+            if (diameter.equals((Object) Integer.MAX_VALUE)){
+                diameter = "\u221e";
+            }
+            if (radius.equals((Object) Integer.MAX_VALUE)){
+                radius = "\u221e";
+            }
+
             infoModel.addRow(new Object [] {"Order", order});
             infoModel.addRow(new Object[] {"Size", size});
             infoModel.addRow(new Object[]{"Girth", "Do later"});
-            infoModel.addRow(new Object[]{"Diameter", "Do later"});
-            infoModel.addRow(new Object[]{"Radius", "Do later"});
+            infoModel.addRow(new Object[]{"Diameter", diameter});
+            infoModel.addRow(new Object[]{"Radius", radius});
+            infoModel.addRow(new Object[] {"Number of Components", numComponents});
             infoModel.addRow(new Object [] {"DFS Order", Arrays.toString(dfsOrder)});
             infoModel.addRow(new Object [] {"BFS Order", Arrays.toString(bfsOrder)});
         }

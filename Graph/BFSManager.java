@@ -7,6 +7,7 @@ public class BFSManager {
     private Graph graph;
     private int order;
     private int size;
+    //private double girth;
     private int [] level;
     private int [] bfsOrder;
     private int count;
@@ -27,6 +28,7 @@ public class BFSManager {
         count = 0;
         numComponents = 0;
         treeEdges = new ArrayList<>();
+        //girth = Double.POSITIVE_INFINITY;
     }
 
     public void bfs(){
@@ -59,4 +61,5 @@ public class BFSManager {
     public int getNumComponents(){return numComponents;}
     public int [] getBfsOrder(){return bfsOrder;}
     public Graph getGraph(){return graph;}
+    //private int getGirth(){return girth;}
 }
