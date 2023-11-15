@@ -19,6 +19,7 @@ public class Digraph extends Graph{
         bfsManager = new BFSManager(this);
         dfsManager = new DFSManager(this);
         eccentricityManager = new EccentricityManager(this);
+        girthManager = new GirthManager(this);
     }
     
     protected void generate(){
@@ -30,9 +31,8 @@ public class Digraph extends Graph{
                 int in;
                 if (order < 6){in = rand.nextInt(4);}
                 else{in = rand.nextInt(6);}
-                if (in == 1){
+                if (in == 1){   underlying.get(i).add(j);
                     adjList.get(i).add(j);
-                    underlying.get(i).add(j);
                     underlying.get(j).add(i);
                     size++;
                 }
@@ -53,8 +53,12 @@ public class Digraph extends Graph{
                 int in = Integer.parseInt(binaryString.substring(count, count + 1));
                 if (in == 1){
                     adjList.get(i).add(j);
-                    underlying.get(i).add(j);
-                    underlying.get(j).add(i);
+                    if (!underlying.get(i).contains(j)){
+                        underlying.get(i).add(j);
+                    }
+                    if (!underlying.get(j).contains(i)){
+                        underlying.get(j).add(i);
+                    }
                     size++;
                 }
                 count++;
@@ -94,6 +98,14 @@ public class Digraph extends Graph{
 
         g.drawLine(x + (int) arrowX1, y + (int) arrowY1, x, y);
         g.drawLine(x + (int) arrowX2, y + (int) arrowY2, x, y);
+    }
+
+    public ArrayList<ArrayList<Integer>> getUnderlyingGraph(){
+        return underlying;
+    }
+
+    public ArrayList<Integer> getUnderlyingAdjacent(int i){
+        return underlying.get(i);
     }
 
 }

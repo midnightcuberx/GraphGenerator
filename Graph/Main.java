@@ -171,9 +171,11 @@ class Main extends JFrame{
             infoTable.setVisible(false);
             dfsTable.setVisible(false);
             bfsTable.setVisible(false);
+            distanceTable.setVisible(false);
             infoVisible = false;
             dfsVisible = false;
             bfsVisible = false;
+            distanceVisible = false;
             infoSetup();
             dfsSetup();
             bfsSetup();
@@ -184,7 +186,7 @@ class Main extends JFrame{
             Graph g = panel.getGraph();
             int order = g.getOrder();
             int size = g.getSize();
-            int girth;
+            Object girth = g.getGirth();
             Object diameter = g.getDiameter();
             Object radius = g.getRadius();
             int [] dfsOrder = g.getDfsOrder();
@@ -198,9 +200,13 @@ class Main extends JFrame{
                 radius = "\u221e";
             }
 
+            if (girth.equals((Object) Integer.MAX_VALUE)){
+                girth = "\u221e";
+            }
+
             infoModel.addRow(new Object [] {"Order", order});
             infoModel.addRow(new Object[] {"Size", size});
-            infoModel.addRow(new Object[]{"Girth", "Do later"});
+            infoModel.addRow(new Object[]{"Girth", girth});
             infoModel.addRow(new Object[]{"Diameter", diameter});
             infoModel.addRow(new Object[]{"Radius", radius});
             infoModel.addRow(new Object[] {"Number of Components", numComponents});

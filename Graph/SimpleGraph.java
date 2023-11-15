@@ -17,6 +17,7 @@ public class SimpleGraph extends Graph{
         bfsManager = new BFSManager(this);
         dfsManager = new DFSManager(this);
         eccentricityManager = new EccentricityManager(this);
+        girthManager = new GirthManager(this);
     }
 
     protected void generate(){
