@@ -52,6 +52,7 @@ public class GraphViewer extends JPanel{
         graph.setupDistanceMatrix();
         //System.out.println(graph);
         System.out.println(Main.ArrayToString2D(graph.getDistanceMatrix()));
+        System.out.println(Arrays.toString(graph.getEccentricityArray()));
         System.out.println(graph.getDiameter());
         System.out.println(graph.getRadius());
         /*System.out.println("There are " + dfsManager.getNumComponents() + " components");

@@ -136,7 +136,7 @@ class Main extends JFrame{
         return j;
     }
 
-    public static String ArrayToString2D(int [] [] arr){
+    public static String ArrayToString2D(Object [] [] arr){
         StringBuffer s = new StringBuffer();
         s.append(Arrays.toString(arr[0]));
         for (int i = 1; i < arr.length; i++){

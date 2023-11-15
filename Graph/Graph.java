@@ -91,8 +91,8 @@ abstract class Graph {
 
     public int getDiameter(){return eccentricityManager.getDiameter();}
     public int getRadius(){return eccentricityManager.getRadius();}
-    public int [] [] getDistanceMatrix(){return eccentricityManager.getDistanceMatrix();}
-    public int [] getEccentricityArray(){return eccentricityManager.getEccentricityArray();}
+    public Object [] [] getDistanceMatrix(){return eccentricityManager.getDistanceMatrix();}
+    public Object [] getEccentricityArray(){return eccentricityManager.getEccentricityArray();}
     public void setupDistanceMatrix(){eccentricityManager.allNodesDistance();}
 
 }

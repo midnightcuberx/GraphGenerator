@@ -2,8 +2,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class EccentricityManager {
-    private int [] [] distanceMatrix;
-    private int [] eccentricityArray;
+    private Object [] [] distanceMatrix;
+    private Object [] eccentricityArray;
     private int diameter;
     private int radius;
     private int order;
@@ -12,9 +12,9 @@ public class EccentricityManager {
     public EccentricityManager(Graph g){
         this.g = g;
         order = g.getOrder();
-        distanceMatrix = new int [order][order];
+        distanceMatrix = new Object [order][order];
         populateDistMatrix();
-        eccentricityArray = new int [order];
+        eccentricityArray = new Object [order];
         diameter = Integer.MIN_VALUE;
         radius = Integer.MAX_VALUE;
     }
@@ -55,6 +55,10 @@ public class EccentricityManager {
             radius = eccentricity;
         }
 
+        if (eccentricity == Integer.MAX_VALUE){
+            eccentricityArray[i] = "\u221e";
+            return;
+        }
         eccentricityArray[i] = eccentricity;
     }
 
@@ -67,7 +71,7 @@ public class EccentricityManager {
     public void populateDistMatrix(){
         for (int i = 0; i < order; i++){
             for (int j = 0; j < order; j++){
-                distanceMatrix[i][j] = Integer.MAX_VALUE;
+                distanceMatrix[i][j] = "\u221e";
             }
         }
     }
@@ -80,6 +84,6 @@ public class EccentricityManager {
 
     public int getDiameter(){return diameter;}
     public int getRadius(){return radius;}
-    public int [] getEccentricityArray(){return eccentricityArray;}
-    public int [] [] getDistanceMatrix(){return distanceMatrix;}
+    public Object [] getEccentricityArray(){return eccentricityArray;}
+    public Object [] [] getDistanceMatrix(){return distanceMatrix;}
 }
