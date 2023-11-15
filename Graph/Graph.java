@@ -8,10 +8,12 @@ abstract class Graph {
     protected int order;
     protected int size;
     protected Random rand = new Random();
-    protected final int nodeHeight = 40;
-    protected final int centerX = 300 - nodeHeight / 2;
-    protected final int centerY = 250 - nodeHeight / 2;
-    protected final int dist = 150;
+    protected static final int WIDTH = 1200;
+    protected static final int HEIGHT = 770;
+    protected static final int nodeHeight = 50;
+    protected static final int centerX = WIDTH / 4- nodeHeight / 2;
+    protected static final int centerY = HEIGHT/ 2 - nodeHeight / 2 - 30;
+    protected static final int dist = WIDTH / 6;
     protected DFSManager dfsManager;
     protected BFSManager bfsManager;
     protected EccentricityManager eccentricityManager;

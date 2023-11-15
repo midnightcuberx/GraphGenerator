@@ -14,15 +14,19 @@ class Main extends JFrame{
     JButton dfsButton;
     JButton bfsButton;
     JButton infoButton;
+    JButton distanceButton;
     JTable infoTable;
+    JTable distanceTable;
     DefaultTableModel infoModel;
     DefaultTableModel bfsModel;
     DefaultTableModel dfsModel;
+    DefaultTableModel distanceModel;
     JTable bfsTable;
     JTable dfsTable;
     boolean infoVisible;
     boolean dfsVisible;
     boolean bfsVisible;
+    boolean distanceVisible;
 
     public static void main(String[] args){
         //ArrayList<ArrayList<ArrayList<Integer>>> a = new ArrayList<>();
@@ -46,7 +50,7 @@ class Main extends JFrame{
     public Main(){
 		super("Graph Generator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1200, 600);
+		setSize(Graph.WIDTH, Graph.HEIGHT);
         add(setup(), BorderLayout.NORTH);
         add(mainSetup(), BorderLayout.EAST);
         add(infoSetup(), BorderLayout.WEST);
@@ -59,7 +63,7 @@ class Main extends JFrame{
         JPanel buttonPanel = new JPanel();
         JPanel j = new JPanel();
         panel = new GraphViewer();
-        panel.setPreferredSize(new Dimension(600, 500));
+        panel.setPreferredSize(new Dimension(Graph.WIDTH / 2, Graph.HEIGHT));
         //j.add(panel);
         //j.add(new JButton("Yes"));
         graphButton = new JButton("Generate Graph");
@@ -77,13 +81,24 @@ class Main extends JFrame{
         dfsModel = new DefaultTableModel(new Object[][] {}, o);
         bfsModel = new DefaultTableModel(new Object[][] {}, new Object[] {"Node", "Level"});
         infoModel = new DefaultTableModel(new Object [][] {}, new Object[]{"Key", "Value"});
+        distanceModel = new DefaultTableModel(new Object [] [] {}, new Object[] {});
+        distanceTable = new JTable(distanceModel);
         infoTable = new JTable(infoModel);
         dfsTable = new JTable(dfsModel);
         bfsTable = new JTable(bfsModel);
         JScrollPane dfs = new JScrollPane(dfsTable);
         JScrollPane bfs = new JScrollPane(bfsTable);
         JScrollPane info = new JScrollPane(infoTable);
+        JScrollPane distance = new JScrollPane(distanceTable);
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+
+        JPanel distanceInfo = new JPanel();
+        distanceButton = new JButton("Show/Hide info");
+        distanceButton.addActionListener(new DistanceListener());
+        distanceInfo.setLayout(new BoxLayout(distanceInfo, BoxLayout.X_AXIS));
+        distanceInfo.add(new JLabel("Distance matrix/table"));
+        distanceInfo.add(new JSeparator());
+        distanceInfo.add(distanceButton);
 
         JPanel graphInfo = new JPanel();
         infoButton = new JButton("Show/Hide info");
@@ -113,6 +128,8 @@ class Main extends JFrame{
         //infoPanel.add(new JLabel("Graph info"));
         infoPanel.add(graphInfo);
         infoPanel.add(info);
+        infoPanel.add(distanceInfo);
+        infoPanel.add(distance);
         infoPanel.add(dfsInfo);
         infoPanel.add(dfs);
         infoPanel.add(bfsInfo);
@@ -140,7 +157,7 @@ class Main extends JFrame{
         StringBuffer s = new StringBuffer();
         s.append(Arrays.toString(arr[0]));
         for (int i = 1; i < arr.length; i++){
-            s.append(", " + Arrays.toString(arr[i]));
+            s.append("," + Arrays.toString(arr[i]));
         }
         return s.toString();
     }
@@ -160,6 +177,7 @@ class Main extends JFrame{
             infoSetup();
             dfsSetup();
             bfsSetup();
+            distanceSetup();
         }
 
         public void infoSetup(){
@@ -188,6 +206,8 @@ class Main extends JFrame{
             infoModel.addRow(new Object[] {"Number of Components", numComponents});
             infoModel.addRow(new Object [] {"DFS Order", Arrays.toString(dfsOrder)});
             infoModel.addRow(new Object [] {"BFS Order", Arrays.toString(bfsOrder)});
+            infoModel.addRow(new Object[] {"Eccentricity array", Arrays.toString(g.getEccentricityArray())});
+            //infoModel.addRow(new Object[] {"Distance Matrix", ArrayToString2D(g.getDistanceMatrix())});
         }
 
         public void dfsSetup(){
@@ -219,6 +239,38 @@ class Main extends JFrame{
             for (int i = 0; i < size; i++){
                 t.removeRow(0);
             }
+        }
+
+        public void distanceSetup(){
+            Graph g = panel.getGraph();
+            int order = g.getOrder();
+            Object [] [] distMatrix = g.getDistanceMatrix();
+            Object [] arr = new Object[order + 1];
+            arr[0] = "Node Num";
+            for (int i = 1; i <= order; i++){
+                arr[i] = i - 1;
+            }
+
+            distanceModel = new DefaultTableModel(new Object [] [] {}, arr);
+            distanceTable.setModel(distanceModel);
+
+            for (int i = 0; i < order; i++){
+                Object [] row = new Object [order + 1];
+                row[0] = "Node " + i;
+                for (int j = 0; j < order; j++){
+                    row[j + 1] = distMatrix[i][j];
+                }
+                distanceModel.addRow(row);
+            }
+
+        }
+    }
+
+    class DistanceListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            boolean bool = distanceVisible == true ? false:true;
+            distanceVisible = bool;
+            distanceTable.setVisible(bool);
         }
     }
 

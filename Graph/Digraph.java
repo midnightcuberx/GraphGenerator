@@ -65,7 +65,7 @@ public class Digraph extends Graph{
     }
 
     public void drawLines(Graphics g, int i, int j){
-        int arrowLength = 10;
+        int arrowLength = 15;
 
         int x1, x2, y1, y2;
         x1 = getX(i) + nodeHeight / 2;
