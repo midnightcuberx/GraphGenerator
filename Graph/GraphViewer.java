@@ -47,10 +47,6 @@ public class GraphViewer extends JPanel{
 
     public void setupViewer(GraphType gt, int order){
         graph = gg.createGraph(gt, order);
-        graph.dfs();
-        graph.bfs();
-        graph.setupDistanceMatrix();
-        graph.calculateGirth();
         //System.out.println(graph);
         /*System.out.println(Main.ArrayToString2D(graph.getDistanceMatrix()));
         System.out.println(Arrays.toString(graph.getEccentricityArray()));

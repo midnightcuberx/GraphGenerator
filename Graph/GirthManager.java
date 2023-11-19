@@ -29,7 +29,7 @@ public class GirthManager {
         while (!q.isEmpty()){
             int node = q.remove();
             if (g instanceof Digraph){
-                adjNodes = ((Digraph) g).getUnderlyingGraph().get(node);
+                adjNodes = ((Digraph) g).getUnderlyingAdjacent(node);
             }
             else{
                 adjNodes = g.getAdjacentNodes(node);
@@ -48,10 +48,6 @@ public class GirthManager {
             }
         }
         // add switch case with type of girth we want
-    }
-
-    public void checkAdjNodes(){
-        
     }
 
     public void calculateGirth(){

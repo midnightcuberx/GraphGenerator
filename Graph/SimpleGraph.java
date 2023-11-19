@@ -18,6 +18,11 @@ public class SimpleGraph extends Graph{
         dfsManager = new DFSManager(this);
         eccentricityManager = new EccentricityManager(this);
         girthManager = new GirthManager(this);
+
+        dfs();
+        bfs();
+        setupDistanceMatrix();
+        calculateGirth();
     }
 
     protected void generate(){
