@@ -11,6 +11,7 @@ public class Digraph extends Graph{
     }
     public Digraph(int n){
         order = n;
+        degreeSequence = new int[order];
         for (int i = 0; i < order; i++){
             adjList.add(new ArrayList<Integer>());
             underlying.add(new ArrayList<Integer>());
@@ -21,6 +22,7 @@ public class Digraph extends Graph{
         eccentricityManager = new EccentricityManager(this);
         girthManager = new GirthManager(this);
 
+        //setDegreeSequence();
         dfs();
         bfs();
         setupDistanceMatrix();
@@ -58,6 +60,7 @@ public class Digraph extends Graph{
                 int in = Integer.parseInt(binaryString.substring(count, count + 1));
                 if (in == 1){
                     adjList.get(i).add(j);
+                    degreeSequence[i]++;
                     if (!underlying.get(i).contains(j)){
                         underlying.get(i).add(j);
                     }

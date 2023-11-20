@@ -210,6 +210,7 @@ class Main extends JFrame{
             infoModel.addRow(new Object[]{"Diameter", diameter});
             infoModel.addRow(new Object[]{"Radius", radius});
             infoModel.addRow(new Object[] {"Number of Components", numComponents});
+            infoModel.addRow(new Object [] {"Degree sequence", Arrays.toString(g.getDegreeSequence())});
             infoModel.addRow(new Object [] {"DFS Order", Arrays.toString(dfsOrder)});
             infoModel.addRow(new Object [] {"BFS Order", Arrays.toString(bfsOrder)});
             infoModel.addRow(new Object[] {"Eccentricity array", Arrays.toString(g.getEccentricityArray())});

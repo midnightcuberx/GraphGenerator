@@ -2,6 +2,7 @@ import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 abstract class Graph {
     protected ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
@@ -18,6 +19,7 @@ abstract class Graph {
     protected BFSManager bfsManager;
     protected EccentricityManager eccentricityManager;
     protected GirthManager girthManager;
+    protected int [] degreeSequence;
 
 
     protected abstract void generate();
@@ -44,6 +46,17 @@ abstract class Graph {
 
     public String toString(){
         return getAdjList().toString();
+    }
+
+    /*public void setDegreeSequence(){
+        for (int i = 0; i < order; i++){
+            degreeSequence[i] = adjList.get(i).size();
+        }
+        //Arrays.sort(degreeSequence);
+    }*/
+
+    public int [] getDegreeSequence(){
+        return degreeSequence;
     }
 
     public void paintNodes(Graphics g){

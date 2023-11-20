@@ -9,6 +9,7 @@ public class SimpleGraph extends Graph{
     }
     public SimpleGraph(int n){
         order = n;
+        degreeSequence = new int[order];
         for (int i = 0; i < order; i++){
             adjList.add(new ArrayList<Integer>());
         }
@@ -19,6 +20,7 @@ public class SimpleGraph extends Graph{
         eccentricityManager = new EccentricityManager(this);
         girthManager = new GirthManager(this);
 
+        //setDegreeSequence();
         dfs();
         bfs();
         setupDistanceMatrix();
@@ -55,6 +57,8 @@ public class SimpleGraph extends Graph{
                 if (in == 1){
                     adjList.get(i).add(j);
                     adjList.get(j).add(i);
+                    degreeSequence[i]++;
+                    degreeSequence[j]++;
                     size++;
                 }
 
